@@ -6,6 +6,7 @@ async fn health_check() -> impl Responder {
     HttpResponse::Ok()
 }
 
+
 #[tokio::main]
 async fn main() -> Result<(), std::io::Error>{
     HttpServer::new(|| {
