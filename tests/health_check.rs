@@ -1,6 +1,17 @@
-use zero2prod::main
 
-#[test]
+#[tokio::test]
 fn dummy_test(){
-    main()
+    spawn_app().await.expect("Failed to spawn our app")
+
+    let client = reqwest::Client::new();
+
+    let response = client.get("http://127.0.0.1:8000/health_check")
+        .send()
+        .await
+        .expect("Failed to execute the request.")
+
+    assert!(response.status().is_success());
+    assert_eq!(Some(0), response.content_length());
+
 }
+
