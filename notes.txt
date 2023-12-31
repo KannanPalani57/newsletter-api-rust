@@ -1,3 +1,6 @@
 Doing Migrations in SQLX
 sqlx migrate add create_subscriptions_table
 sqlx migrate run
+
+Insightful things can be learned by playing around with trace-level logs.
+RUSTLOG=trace cargo run
