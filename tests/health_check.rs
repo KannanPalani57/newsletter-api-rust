@@ -10,7 +10,6 @@ use secrecy::ExposeSecret;
 static TRACING: Lazy<()> = Lazy::new(|| {
     // let  subscriber = get_subscriber("test".into(), "debug".into());
     // init_subscriber(subscriber);
-
     let default_filter_level = "info".to_string();
     let subscriber_name = "test".to_string();
 
@@ -29,8 +28,6 @@ static TRACING: Lazy<()> = Lazy::new(|| {
             );
             init_subscriber(subscriber);
     }
-
-
 });
 
 
@@ -38,6 +35,7 @@ pub struct TestApp {
     pub address: String,
     pub db_pool: PgPool,
 }
+
 
 async fn spawn_app() -> TestApp {
 
