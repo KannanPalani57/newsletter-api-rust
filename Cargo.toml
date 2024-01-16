@@ -27,6 +27,11 @@ secrecy = { version = "0.8", features = ["serde"] }
 tracing-actix-web = "0.7"
 unicode-segmentation = "1"
 validator = "0.16"
+argon2 = { version = "0.4", features = ["std"] }
+rand = { version = "0.8", features=["std_rng"] }
+anyhow = "1.0.40"
+thiserror = "1.0.24"
+
 
 [dependencies.sqlx] 
 version = "0.7"
