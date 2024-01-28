@@ -12,7 +12,7 @@ path = "src/lib.rs"
 [dependencies]
 config = "0.13"
 actix-web = "4"
-tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "rt"] }
 serde = { version = "1", features = ["derive"]}
 uuid = { version = "1", features = ["v4"] }
 chrono = { version = "0.4.22", default-features = false, features = ["clock"] }
@@ -31,7 +31,7 @@ argon2 = { version = "0.4", features = ["std"] }
 rand = { version = "0.8", features=["std_rng"] }
 anyhow = "1.0.40"
 thiserror = "1.0.24"
-
+wiremock = "0.5"
 
 [dependencies.sqlx] 
 version = "0.7"
@@ -53,6 +53,7 @@ features = ["json", "rustls-tls"]
 
 [dev-dependencies]
 reqwest = "0.11"
+fake = "~2.3.0"
 claims = "0.7"
 
 

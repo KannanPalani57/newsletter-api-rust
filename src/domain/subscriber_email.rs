@@ -24,7 +24,6 @@ mod tests {
     use super::SubscriberEmail;
     use claims::assert_err;
 
-
     #[test]
     fn empty_string_is_rejected() {
         let email = "".to_string();
@@ -42,8 +41,4 @@ mod tests {
         let email = "@domain.com".to_string();
         assert_err!(SubscriberEmail::parse(email));
     }
-
-
-
- 
 }

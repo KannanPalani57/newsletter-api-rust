@@ -5,7 +5,6 @@ use sqlx::PgPool;
 use std::convert::{TryFrom, TryInto};
 use uuid::Uuid;
 
-
 #[derive(serde::Deserialize)]
 pub struct FormData {
     email: String,
@@ -21,8 +20,6 @@ impl TryFrom<FormData> for NewSubscriber {
     }
 }
 
-
-
 #[tracing::instrument(
     name = "Adding a new subscriber", 
     skip(form, pool), 
@@ -32,7 +29,6 @@ impl TryFrom<FormData> for NewSubscriber {
     )
 )]
 pub async fn subscribe(form: web::Form<FormData>, pool: web::Data<PgPool>) -> HttpResponse {
-
     let new_subscriber = match form.0.try_into() {
         Ok(form) => form,
         Err(_) => return HttpResponse::BadRequest().finish(),
@@ -41,7 +37,6 @@ pub async fn subscribe(form: web::Form<FormData>, pool: web::Data<PgPool>) -> Ht
         Ok(_) => HttpResponse::Ok().finish(),
         Err(_) => HttpResponse::InternalServerError().finish(),
     }
-
 }
 
 #[tracing::instrument(
@@ -49,10 +44,9 @@ pub async fn subscribe(form: web::Form<FormData>, pool: web::Data<PgPool>) -> Ht
     skip(new_subscriber, pool)
 )]
 pub async fn insert_subscriber(
-    pool: &PgPool, 
+    pool: &PgPool,
     new_subscriber: &NewSubscriber,
-
-) -> Result<(), sqlx::Error>{
+) -> Result<(), sqlx::Error> {
     sqlx::query!(
         r#"
     INSERT INTO subscriptions (id, email, name, subscribed_at)
@@ -71,4 +65,3 @@ pub async fn insert_subscriber(
     })?;
     Ok(())
 }
-
